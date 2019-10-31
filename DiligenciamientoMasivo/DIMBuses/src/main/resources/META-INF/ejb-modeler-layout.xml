@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+  <view>
+    <name>DCARBuses</name>
+    <ejb>
+      <name>DDIMBusAcciones</name>
+      <x>92</x>
+      <y>33</y>
+      <width>196</width>
+      <height>199</height>
+    </ejb>
+    <ejb>
+      <name>DDIMBusAccionesLocal</name>
+      <x>360</x>
+      <y>30</y>
+      <width>196</width>
+      <height>199</height>
+    </ejb>
+    <ejb>
+      <name>DDIMBusServicios</name>
+      <x>92</x>
+      <y>282</y>
+      <width>158</width>
+      <height>145</height>
+    </ejb>
+    <ejb>
+      <name>DDIMBusServiciosLocal</name>
+      <x>360</x>
+      <y>279</y>
+      <width>171</width>
+      <height>145</height>
+    </ejb>
+    <ejb>
+      <name>DDIMBusServiciosTx</name>
+      <x>92</x>
+      <y>477</y>
+      <width>158</width>
+      <height>145</height>
+    </ejb>
+    <ejb>
+      <name>DSrvMensajesDiligenciamientoMasivo</name>
+      <x>393</x>
+      <y>460</y>
+      <width>255</width>
+      <height>127</height>
+    </ejb>
+  </view>
+</layout>
+

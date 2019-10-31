@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-deployment-structure xmlns="urn:jboss:deployment-structure:1.2"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<ear-subdeployments-isolated>false</ear-subdeployments-isolated>
+	<deployment>
+		<module-alias name="deployment.GestionExpediente"></module-alias>
+		<resources>
+			<resource-root path="GEXBuses.jar" />
+		</resources>
+		<dependencies>
+			<module name="org.jboss.ejb-client" export="true" />
+			<module name="co.gov.dian.muisca.transversales.core.biblioteca" export="true" />
+			<module name="co.gov.dian.muisca.transversales.core.arqconfig" export="true" />
+			<module name="deployment.MuiscaSubsistemas" export="true" />
+			<module name="deployment.MuiscaFaces" export="true" />
+		</dependencies>
+		<exclusions></exclusions>
+	</deployment>
+	<sub-deployment name="GEXBuses.jar">
+		<module-alias name="deployment.GestionExpediente.GEXBuses"></module-alias>
+		<dependencies>
+		</dependencies>
+		<exclusions></exclusions>
+	</sub-deployment>
+</jboss-deployment-structure>
+  

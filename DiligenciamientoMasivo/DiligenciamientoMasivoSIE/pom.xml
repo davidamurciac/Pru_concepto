@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+
+	<groupId>co.gov.dian.muisca.diligenciamientomasivo</groupId>
+	<artifactId>DiligenciamientoMasivoSIE</artifactId>
+	<version>1.9.6</version>
+	<packaging>pom</packaging>
+	<name>DiligenciamientoMasivoSIE</name>
+
+	<properties>
+		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+		<version.ejb.plugin>2.5.1</version.ejb.plugin>
+		<version.compiler.plugin>2.0.2</version.compiler.plugin>
+		<version.ejb.spec>3.2</version.ejb.spec>
+		<version.resources.plugin>3.0.0</version.resources.plugin>
+		<version.helper.plugin>1.10</version.helper.plugin>
+		<version.ear.plugin>2.10.1</version.ear.plugin>
+		<version.application.xml>1.3</version.application.xml>
+		<version.war.plugin>2.6</version.war.plugin>
+		<version.jar.plugin>3.0.0</version.jar.plugin>
+		<version.jarsigner.plugin>1.4</version.jarsigner.plugin>
+		<version.dependency.plugin>2.10</version.dependency.plugin>
+		<version.jbosspackaging.plugin>2.2</version.jbosspackaging.plugin>
+		<version.compiler.source>1.8</version.compiler.source>
+		<version.compiler.target>1.8</version.compiler.target>
+		<version.maven.resources.plugin>2.4</version.maven.resources.plugin>
+		<version.subsistema>${project.version}</version.subsistema>
+		<ambiente.despliegue>dev</ambiente.despliegue>
+		<carpeta.despliegue.ear>${project.build.directory}</carpeta.despliegue.ear>
+		<carpeta.despliegue.bus>${project.build.directory}</carpeta.despliegue.bus>
+		<carpeta.despliegue.war>${project.build.directory}</carpeta.despliegue.war>
+		
+		<nombre.proyecto.buses>DIMBuses</nombre.proyecto.buses>
+		<nombre.proyecto.web>WebDiligenciamientoMasivo</nombre.proyecto.web>
+		<nombre.proyecto.ws>DiligenciamientoMasivo-ws</nombre.proyecto.ws>
+		<nombre.proyecto.lib>LibDiligenciamientoMasivo</nombre.proyecto.lib>		
+		<nombre.proyecto.recursos.estaticos>WebDiligenciamientoMasivoApache</nombre.proyecto.recursos.estaticos>
+		<nombre.proyecto.subsistema>MuiscaSubsistemas-DiligenciamientoMasivo</nombre.proyecto.subsistema>
+		<nombre.carpeta.recursos.ea>recursos</nombre.carpeta.recursos.ea>
+		
+		<paquete.subsistema>diligenciamientomasivo</paquete.subsistema>
+		<custom.qualifier>SNAPSHOT</custom.qualifier>
+		
+		<maven.build.timestamp.format>dd/MMMM/yyyy hh:mm:ss aa</maven.build.timestamp.format>
+		<FECHA>${maven.build.timestamp}</FECHA>
+		<java.compiler.path>${env.JAVA_HOME}/bin</java.compiler.path>
+		<include.web.inf.scope>compile</include.web.inf.scope>
+
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+
+			<dependency>
+				<groupId>co.gov.dian.muisca.rec</groupId>
+				<artifactId>base.optional</artifactId>
+				<version>1.0.0</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<finalName>${project.name}</finalName>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-checkstyle-plugin</artifactId>
+					<version>2.16</version>
+					<dependencies>
+						<dependency>
+							<groupId>co.gov.dian.muisca.integracion.continua</groupId>
+							<artifactId>reglas.cs</artifactId>
+							<version>1.0.0</version>
+							<scope>runtime</scope>
+						</dependency>
+						<dependency>
+							<groupId>com.sun</groupId>
+							<artifactId>tools</artifactId>
+							<version>1.8.0</version>
+							<scope>system</scope>
+							<systemPath>${env.JAVA_HOME}/lib/tools.jar</systemPath>
+						</dependency>
+						<dependency>
+							<groupId>com.puppycrawl.tools</groupId>
+							<artifactId>checkstyle</artifactId>
+							<version>6.11.2</version>
+							<scope>runtime</scope>
+						</dependency>
+						<dependency>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-checkstyle-plugin</artifactId>
+							<version>2.16</version>
+							<scope>runtime</scope>
+						</dependency>
+					</dependencies>
+					<executions>
+						<execution>
+							<goals>
+								<goal>check</goal>
+								<goal>checkstyle</goal>
+							</goals>
+							<configuration>
+								<consoleOutput>true</consoleOutput>
+								<includeResources>true</includeResources>
+								<includeTestResources>true</includeTestResources>
+								<resourceIncludes>**/*.java</resourceIncludes>
+								<headerFile>${basedir}/src/main/resources/header.txt</headerFile>
+								<!-- On Checkstyle:check -->
+								<failsOnError>true</failsOnError>
+								<outputFileFormat>html</outputFileFormat>
+								<xrefLocation>file://${basedir}/src/main/java/</xrefLocation>
+								<linkXRef>true</linkXRef>
+								<sourceDirectories>
+									<sourceDirectory>${basedir}/src/main/java/</sourceDirectory>
+								</sourceDirectories>
+								<outputFile>${project.build.directory}/report_cs/report.html</outputFile>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-pmd-plugin</artifactId>
+					<version>3.7</version>
+					<dependencies>
+						<dependency>
+							<groupId>net.sourceforge.pmd</groupId>
+							<artifactId>pmd-core</artifactId>
+							<version>5.5.1</version>
+							<scope>runtime</scope>
+						</dependency>
+						<dependency>
+							<groupId>net.sourceforge.pmd</groupId>
+							<artifactId>pmd-java</artifactId>
+							<version>5.5.1</version>
+							<scope>runtime</scope>
+						</dependency>
+					</dependencies>
+					<configuration>
+						<compileSourceRoots>
+							<compileSourceRoot>${basedir}/src/main/java</compileSourceRoot>
+						</compileSourceRoots>
+						<targetDirectory>${project.build.directory}</targetDirectory>
+						<outputDirectory>${project.build.directory}/report_pmd</outputDirectory>
+						<xrefLocation>file:///${basedir}/src/main/java</xrefLocation>
+						<rulesets>
+							<ruleset>file:///${project.parent.basedir}/rules/dian_rules_pmd.xml</ruleset>
+						</rulesets>
+					</configuration>
+				</plugin>
+				
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-ear-plugin</artifactId>
+					<version>${version.ear.plugin}</version>
+					<configuration>
+						<outputDirectory>${carpeta.despliegue.ear}</outputDirectory>
+						<version>${version.application.xml}</version>
+						<archive>
+							<manifest>
+								<addClasspath>false</addClasspath>
+								<addExtensions>false</addExtensions>
+							</manifest>
+							<manifestEntries>
+								<AMBIENTE>${ambiente.despliegue}</AMBIENTE>
+								<NOMBRE_DEL_SUBSISTEMA>${project.parent.artifactId}</NOMBRE_DEL_SUBSISTEMA>
+								<VERSION_DEL_SUBSISTEMA>${project.version}</VERSION_DEL_SUBSISTEMA>
+								<ARTEFACTO>${project.artifactId}</ARTEFACTO>
+								<FECHA_DE_CONSTRUCCION>${FECHA}</FECHA_DE_CONSTRUCCION>
+								<RESPONSABLE_DE_CONSTRUCCION>${user.name}</RESPONSABLE_DE_CONSTRUCCION>
+								<CONSTRUIDO_EN>${os.name} (${os.version}) para ${os.arch}</CONSTRUIDO_EN>
+							</manifestEntries>
+						</archive>
+						<earSourceIncludes>**</earSourceIncludes>
+						<generateApplicationXml>false</generateApplicationXml>
+						<applicationXml>${basedir}/src/main/resources/application.xml</applicationXml>
+						<encoding>UTF-8</encoding>
+						<fileNameMapping>no-version</fileNameMapping>
+					</configuration>
+				</plugin>
+				
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>${version.compiler.plugin}</version>
+					<configuration>
+						<source>${version.compiler.source}</source>
+						<target>${version.compiler.target}</target>
+					</configuration>
+				</plugin>
+
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>all</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<postfix></postfix>
+			</properties>
+			<modules>
+				<module>../DIMBuses</module>
+				<module>../WebDiligenciamientoMasivo</module>				
+				<module>../DiligenciamientoMasivo</module>
+			</modules>
+		</profile>
+		
+		<profile>
+			<id>subsystem</id>
+			<properties>
+				<postfix></postfix>
+			</properties>
+			<modules>
+				<module>../DIMBuses</module>
+				<module>../MuiscaSubsistemas-DiligenciamientoMasivo</module>
+			</modules>
+		</profile>
+
+		<profile>
+			<id>ejb</id>
+			<properties>
+				<postfix></postfix>
+			</properties>
+			<modules>
+				<module>../DIMBuses</module>
+				<module>../DiligenciamientoMasivoBuses</module>
+			</modules>
+		</profile>
+
+		<!-- Descomentar si se generó el proyecto Static (Recursos estáticos) -->
+		<!--
+		<profile>
+			<id>static</id>
+			<properties>
+				<postfix></postfix>
+			</properties>
+			<modules>
+				<module>../WebDiligenciamientoMasivoApache</module>
+			</modules>
+		</profile>
+		-->
+		
+		<profile>
+			<id>lib</id>
+			<properties>
+				<postfix></postfix>
+			</properties>
+			<modules>
+				<module>../DIMBuses</module>
+				<module>../WebDiligenciamientoMasivo</module>
+				<module>../LibDiligenciamientoMasivo</module>
+			</modules>
+		</profile>
+		 
+		<profile>
+		      <id>copy-resources</id>
+		      <properties>
+		            <postfix></postfix>
+		      </properties>
+		      <modules>
+		            <module>../DIMBuses</module>
+					<module>../WebDiligenciamientoMasivo</module>
+		      </modules>
+		</profile>
+		 
+		<profile>
+			<id>version</id>
+			<properties>
+				<postfix>-${project.version}</postfix>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>qualifier</id>
+			<properties>
+				<postfix>-${project.version}-${custom.qualifier}</postfix>
+			</properties>
+		</profile>
+	</profiles>
+	
+
+</project>
