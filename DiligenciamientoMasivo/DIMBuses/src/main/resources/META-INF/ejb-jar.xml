@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ejb-jar xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	version="3.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/ejb-jar_3_2.xsd">
+
+	<module-name>DIMBuses</module-name>
+	<display-name>DIMBuses</display-name>
+
+
+	<enterprise-beans>
+		<session id="Session_2063474619343">
+			<ejb-name>DDIMBusAcciones</ejb-name>
+			<home>co.gov.dian.muisca.arquitectura.interfaces.implgenerica.buses.IDBusAccionesHome</home>
+			<remote>co.gov.dian.muisca.arquitectura.interfaces.implgenerica.buses.IDBusAccionesEjb</remote>
+			<local-home>co.gov.dian.muisca.arquitectura.interfaces.implgenerica.buses.IDBusAccionesHomeLocal</local-home>
+			<local>co.gov.dian.muisca.arquitectura.interfaces.implgenerica.buses.IDBusAccionesEjbLocal</local>
+			<ejb-class>co.gov.dian.muisca.diligenciamientomasivo.buses.ejb.DDIMBusAccionesBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+		</session>
+		<session id="Session_2063474619375">
+			<ejb-name>DDIMBusAccionesLocal</ejb-name>
+			<local-home>co.gov.dian.muisca.arquitectura.interfaces.implgenerica.buses.IDBusAccionesHomeLocal</local-home>
+			<local>co.gov.dian.muisca.arquitectura.interfaces.implgenerica.buses.IDBusAccionesEjbLocal</local>
+			<ejb-class>co.gov.dian.muisca.diligenciamientomasivo.buses.ejb.DDIMBusAccionesBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+		</session>
+		<session id="Session_2063474619406">
+			<ejb-name>DDIMBusServicios</ejb-name>
+			<home>co.gov.dian.muisca.arquitectura.interfaces.implgenerica.buses.IDBusServiciosHome</home>
+			<remote>co.gov.dian.muisca.arquitectura.interfaces.implgenerica.buses.IDBusServiciosEjb</remote>
+			<ejb-class>co.gov.dian.muisca.diligenciamientomasivo.buses.ejb.DDIMBusServiciosBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+		</session>
+		<session id="Session_2063474619437">
+			<ejb-name>DDIMBusServiciosLocal</ejb-name>
+			<local-home>co.gov.dian.muisca.arquitectura.interfaces.implgenerica.buses.IDBusServiciosHomeLocal</local-home>
+			<local>co.gov.dian.muisca.arquitectura.interfaces.implgenerica.buses.IDBusServiciosEjbLocal</local>
+			<ejb-class>co.gov.dian.muisca.diligenciamientomasivo.buses.ejb.DDIMBusServiciosBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+		</session>
+		<session id="Session_2063474619468">
+			<ejb-name>DDIMBusServiciosTx</ejb-name>
+			<home>co.gov.dian.muisca.arquitectura.interfaces.implgenerica.buses.IDBusServiciosHome</home>
+			<remote>co.gov.dian.muisca.arquitectura.interfaces.implgenerica.buses.IDBusServiciosEjb</remote>
+			<ejb-class>co.gov.dian.muisca.diligenciamientomasivo.buses.ejb.DDIMBusServiciosBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+		</session>
+		<session id="Session_2063474619469">
+			<description>Este EJB es utilizado para servicios que requieren una nueva transacción</description>
+			<ejb-name>DDIMBusServiciosTxNueva</ejb-name>
+			<home>co.gov.dian.muisca.arquitectura.interfaces.implgenerica.buses.IDBusServiciosHome</home>
+			<remote>co.gov.dian.muisca.arquitectura.interfaces.implgenerica.buses.IDBusServiciosEjb</remote>
+			<ejb-class>co.gov.dian.muisca.diligenciamientomasivo.buses.ejb.DDIMBusServiciosBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+		</session>
+		<message-driven id="MessageDriven_2063474619500">
+			<ejb-name>DSrvMensajesDiligenciamientoMasivo</ejb-name>
+			<ejb-class>co.gov.dian.muisca.diligenciamientomasivo.general.eventos.DSrvMensajesDiligenciamientoMasivoBean</ejb-class>
+			<transaction-type>Container</transaction-type>
+			<message-destination-type>javax.jms.Queue</message-destination-type>
+			<activation-config>
+				<activation-config-property>
+					<activation-config-property-name>destination</activation-config-property-name>
+					<activation-config-property-value>queue/ColaDiligenciamiento</activation-config-property-value>
+				</activation-config-property>
+			</activation-config>
+		</message-driven>
+		<!-- 
+		<message-driven id="MessageDriven_1134266807093">
+			<ejb-name>SrvMensajesDIM</ejb-name>
+			<ejb-class>co.gov.dian.muisca.diligenciamientomasivo.general.eventos.SrvMensajesDIMBean</ejb-class>
+			<transaction-type>Container</transaction-type>
+			<message-driven-destination>
+				<destination-type>javax.jms.Queue</destination-type>
+			</message-driven-destination>
+		</message-driven>
+		-->
+	</enterprise-beans>
+
+
+	<assembly-descriptor>
+		<container-transaction
+			id="MethodTransaction_2063474619531">
+			<method id="MethodElement_2063474619546">
+				<ejb-name>DDIMBusAcciones</ejb-name>
+				<method-name>*</method-name>
+			</method>
+			<trans-attribute>Required</trans-attribute>
+		</container-transaction>
+		<container-transaction
+			id="MethodTransaction_2063474619562">
+			<method id="MethodElement_2063474619578">
+				<ejb-name>DDIMBusAccionesLocal</ejb-name>
+				<method-name>*</method-name>
+			</method>
+			<trans-attribute>Required</trans-attribute>
+		</container-transaction>
+		<container-transaction
+			id="MethodTransaction_2063474619593">
+			<method id="MethodElement_2063474619609">
+				<ejb-name>DDIMBusServicios</ejb-name>
+				<method-name>*</method-name>
+			</method>
+			<trans-attribute>Required</trans-attribute>
+		</container-transaction>
+		<container-transaction
+			id="MethodTransaction_2063474619625">
+			<method id="MethodElement_2063474619640">
+				<ejb-name>DDIMBusServiciosLocal</ejb-name>
+				<method-name>*</method-name>
+			</method>
+			<trans-attribute>Required</trans-attribute>
+		</container-transaction>
+		<container-transaction
+			id="MethodTransaction_2063474619656">
+			<method id="MethodElement_2063474619671">
+				<ejb-name>DDIMBusServiciosTx</ejb-name>
+				<method-name>*</method-name>
+			</method>
+			<trans-attribute>Required</trans-attribute>
+		</container-transaction>
+		<container-transaction
+			id="MethodTransaction_2063474619688">
+			<method id="MethodElement_2063474619704">
+				<ejb-name>DDIMBusServiciosTxNueva</ejb-name>
+				<method-name>*</method-name>
+			</method>
+			<trans-attribute>RequiresNew</trans-attribute>
+		</container-transaction>
+		<container-transaction
+			id="MethodTransaction_2063474619687">
+			<method id="MethodElement_2063474619703">
+				<ejb-name>DSrvMensajesDiligenciamientoMasivo</ejb-name>
+				<method-name>*</method-name>
+			</method>
+			<trans-attribute>Required</trans-attribute>
+		</container-transaction>
+		<!-- <container-transaction id="MethodTransaction_1134266807218"> <method 
+			id="MethodElement_1134266807234"> <ejb-name>SrvMensajesDIM</ejb-name> <method-name>*</method-name> 
+			</method> <trans-attribute>Required</trans-attribute> </container-transaction> -->
+	</assembly-descriptor>
+
+</ejb-jar>
+

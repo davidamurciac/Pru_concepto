@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<application id="DiligenciamientoMasivo" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/application_7.xsd"
+       version="7">	
+       
+	<application-name>DiligenciamientoMasivo</application-name>
+	<display-name>DiligenciamientoMasivo</display-name>
+	
+	<module id="EjbModule_1349710193215">
+		<ejb>DIMBuses.jar</ejb>
+	</module>
+</application>
+

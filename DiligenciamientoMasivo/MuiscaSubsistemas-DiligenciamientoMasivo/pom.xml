@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+
+	<parent>
+		<groupId>co.gov.dian.muisca.diligenciamientomasivo</groupId>
+		<artifactId>DiligenciamientoMasivoSIE</artifactId>
+		<relativePath>../DiligenciamientoMasivoSIE</relativePath>
+		<version>1.9.6</version>
+	</parent>
+
+	<artifactId>MuiscaSubsistemas-DiligenciamientoMasivo</artifactId>
+	<packaging>jar</packaging>
+	<name>MuiscaSubsistemas-DiligenciamientoMasivo</name>
+	<url>http://maven.apache.org</url>
+
+	<build>
+		<finalName>${nombre.proyecto.subsistema}${postfix}</finalName>
+		<resources>
+	        <resource>
+	            <directory>src/main/resources</directory>
+	            <excludes>
+	                <exclude>*.xml</exclude>
+	            </excludes>
+	            <filtering>false</filtering>
+	        </resource>
+	    </resources>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>${version.helper.plugin}</version>
+				<executions>
+					<execution>
+						<id>add-resource</id>
+						<phase>generate-resources</phase>
+						<goals>
+							<goal>add-resource</goal>
+						</goals>
+						<configuration>
+							<resources>
+								<resource>
+									<targetPath>META-INF/</targetPath>
+									<directory>${basedir}/src/main/resources/</directory>
+									<includes>
+										<include>jboss-deployment-structure.xml</include>
+									</includes>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>${version.jar.plugin}</version>
+
+				<configuration>
+					<outputDirectory>${carpeta.despliegue.bus}</outputDirectory>
+					<ejbVersion>${version.ejb.spec}</ejbVersion>
+					<archive>
+						<manifest>
+							<addClasspath>false</addClasspath>
+							<addExtensions>false</addExtensions>
+						</manifest>
+						<manifestEntries>
+							<AMBIENTE>${ambiente.despliegue}</AMBIENTE>
+							<NOMBRE_DEL_SUBSISTEMA>${project.parent.artifactId}</NOMBRE_DEL_SUBSISTEMA>
+							<VERSION_DEL_SUBSISTEMA>${project.version}</VERSION_DEL_SUBSISTEMA>
+							<ARTEFACTO>${project.artifactId}</ARTEFACTO>
+							<FECHA_DE_CONSTRUCCION>${FECHA}</FECHA_DE_CONSTRUCCION>
+							<RESPONSABLE_DE_CONSTRUCCION>${user.name}</RESPONSABLE_DE_CONSTRUCCION>
+							<CONSTRUIDO_EN>${os.name} (${os.version}) para ${os.arch}</CONSTRUIDO_EN>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>2.8.2</version>
+				<configuration>
+					<skip>false</skip>
+					<generatePom>true</generatePom>
+					<groupId>co.gov.dian.muisca.diligenciamientomasivo</groupId>
+					<artifactId>${nombre.proyecto.subsistema}</artifactId>
+					<packaging>jar</packaging>
+					<name>JAR Modulo Subsistema - ${nombre.proyecto.subsistema}</name>
+					<description>Paquete JAR para el subsistema de DiligenciamientoMasivo</description>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
