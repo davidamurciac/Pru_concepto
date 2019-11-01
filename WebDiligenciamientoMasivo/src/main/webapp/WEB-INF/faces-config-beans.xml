@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE faces-config PUBLIC "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN"
+                              "http://java.sun.com/dtd/web-facesconfig_1_0.dtd">
+<faces-config>
+
+	<lifecycle>
+		<phase-listener>
+			co.gov.dian.muisca.arquitectura.web.jsf.config.ciclovida.DFaseListenerRestoreViewAJAX
+		</phase-listener>
+		<phase-listener>
+			co.gov.dian.muisca.arquitectura.web.jsf.config.ciclovida.DFaseListenerRenderResponseAJAX
+		</phase-listener>
+	</lifecycle>
+	
+	<!-- Ejemplo de convertidor
+	<converter>
+	  <description>Convierte de formato moneda (#,###.00) a tipo dato Long</description>
+	  <converter-id>CurrencyToLong</converter-id>
+	  <converter-class>co.gov.dian.muisca.diligenciamientomasivo.recaudacion.web.normalizacion.converter.DCurrencyToLongConverter</converter-class>
+	</converter>
+	-->
+
+	<!-- beans Ejemplo de managed bean
+	<managed-bean>
+     <managed-bean-name>normaliza</managed-bean-name>
+     <managed-bean-class>co.gov.dian.muisca.diligenciamientomasivo.recaudacion.web.normalizacion.wbo.DNormalizacionWBO</managed-bean-class>
+     <managed-bean-scope>request</managed-bean-scope>
+   </managed-bean>
+    normalizacion de saldos -->
+   
+	<!-- beans arq -->
+	
+	<managed-bean>
+		<managed-bean-name>menuUsuario</managed-bean-name>
+		<managed-bean-class>co.gov.dian.muisca.arquitectura.web.wbo.DMenuUsuarioWBO</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>bandejaTareas</managed-bean-name>
+		<managed-bean-class>co.gov.dian.muisca.arquitectura.web.wbo.DBandejaTareasWBO</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>login</managed-bean-name>
+		<managed-bean-class>co.gov.dian.muisca.arquitectura.web.wbo.DLoginWBO</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>cargadorTarea</managed-bean-name>
+		<managed-bean-class>co.gov.dian.muisca.arquitectura.web.wbo.DCargadorTareaWBO</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+
+	<!-- beans expedientes -->
+	<managed-bean>
+		<managed-bean-name>lstDetalleCasoExpediente</managed-bean-name>
+		<managed-bean-class>co.gov.dian.muisca.gestionexpediente.web.wbo.expediente.DDetalleCasoExpedienteWBO</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>bandejaTareasDef</managed-bean-name>
+		<managed-bean-class>co.gov.dian.muisca.arquitectura.web.wbo.tareas.DBandejaTareasNegWBO</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+
+</faces-config>
+
+
+
